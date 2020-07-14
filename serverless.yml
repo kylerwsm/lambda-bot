@@ -1,4 +1,4 @@
-service: golang-lambda
+service: lambda-bot
 frameworkVersion: '>=1.28.0 <2.0.0'
 
 provider:
@@ -8,20 +8,18 @@ provider:
   stage: pro
   region: ap-southeast-1
   environment:
+    TELEGRAM_BOT_TOKEN: ${env:TELEGRAM_BOT_TOKEN}
     SERVICE_NAME: ${self:service}
-
-  # Enable the following if hooking up DynamoDB.
-
-  # iamRoleStatements:
-  #   - Effect: 'Allow'
-  #     Action:
-  #       - dynamodb:Query
-  #       - dynamodb:Scan
-  #       - dynamodb:GetItem
-  #       - dynamodb:PutItem
-  #       - dynamodb:UpdateItem
-  #       - dynamodb:DeleteItem
-  #     Resource: 'arn:aws:dynamodb:ap-southeast-1:646978820291:table/Hello'
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: 'arn:aws:dynamodb:ap-southeast-1:646978820291:table/Links'
 
 package:
   exclude:
@@ -31,20 +29,20 @@ package:
     - ./public/**
 
 functions:
-  hello:
-    handler: bin/hello
+  kyler-bot:
+    handler: bin/kyler-bot
     events:
       - http:
-          path: hello
-          method: get
+          path: kyler-bot
+          method: post
 
 plugins:
   - serverless-domain-manager
 
 custom:
   customDomain:
-    domainName: 'hello.kylerwong.dev'
-    basePath: ''
+    domainName: 'bots.kylerwong.dev'
+    basePath: 'telegram'
     stage: ${self:provider.stage}
     createRoute53Record: false
     endpointType: 'regional'

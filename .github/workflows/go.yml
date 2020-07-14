@@ -29,7 +29,7 @@ jobs:
           fi
 
       - name: Build
-        run: go build -v functions/hello/*.go
+        run: go build -v functions/kyler-bot/*.go
 
       - name: Test
-        run: go test -v functions/hello/*.go
+        run: go test -v functions/kyler-bot/*.go

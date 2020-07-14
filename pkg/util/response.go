@@ -11,6 +11,16 @@ func ResponseInternalServerError() events.APIGatewayProxyResponse {
 	return events.APIGatewayProxyResponse{StatusCode: http.StatusInternalServerError}
 }
 
+// ResponseOK creates a OK response event.
+func ResponseOK() events.APIGatewayProxyResponse {
+	return events.APIGatewayProxyResponse{StatusCode: http.StatusOK}
+}
+
+// ResponseBadRequest creates a bad request response event.
+func ResponseBadRequest() events.APIGatewayProxyResponse {
+	return events.APIGatewayProxyResponse{StatusCode: http.StatusBadRequest}
+}
+
 // ResponseFound creates a redirect response event.
 func ResponseFound(location string) events.APIGatewayProxyResponse {
 	headers := map[string]string{"Location": location}

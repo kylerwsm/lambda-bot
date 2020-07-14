@@ -1,5 +1,5 @@
-# Golang Lambda
+# Lambda Bot
 
-![Go](https://github.com/kylerwsm/lambda-links/workflows/Go/badge.svg)
+![Go](https://github.com/kylerwsm/lambda-bot/workflows/Go/badge.svg)
 
-Golang Lambda is a quick start template to build AWS Lambdas with Golang.
+Lambda Bot is a Telegram bot built in Golang with AWS Lambda and DynamoDB.
