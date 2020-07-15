@@ -17,7 +17,7 @@ func PingHandler() string {
 func Join(links []entity.Link) string {
 	formattedLinks := make([]string, 0)
 	for _, link := range links {
-		formattedLink := fmt.Sprintf("*%s*\n→ %s", link.ShortLink, link.OriginalLink)
+		formattedLink := fmt.Sprintf("*%s*\n%s", link.ShortLink, link.OriginalLink)
 		formattedLinks = append(formattedLinks, formattedLink)
 	}
 	return strings.Join(formattedLinks, "\n\n")
@@ -29,7 +29,7 @@ func ShortLinksHandler() (string, error) {
 	if err != nil {
 		return "", nil
 	}
-	linkString := "These are your shortened links.\n\n" + Join(links)
+	linkString := fmt.Sprintf("You have %d shortened links.\n\n%s", len(links), Join(links))
 	return linkString, nil
 }
 

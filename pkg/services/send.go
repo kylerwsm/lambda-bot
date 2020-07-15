@@ -22,6 +22,7 @@ func SendResponse(chatID int, reply string) error {
 				"disable_web_page_preview": {strconv.FormatBool(true)},
 				"parse_mode":               {"Markdown"},
 			})
+		util.LogIf(err)
 		return err
 	}
 	return util.CreateEnvError(env)
