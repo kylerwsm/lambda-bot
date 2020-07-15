@@ -1,11 +1,14 @@
 package util
 
-import "log"
+import (
+	"fmt"
+	"log"
+)
 
 // DieIf logs and panics if err is not nil.
 func DieIf(err error) {
 	if err != nil {
-		log.Panic(err)
+		log.Panicln(err)
 	}
 }
 
@@ -14,4 +17,9 @@ func LogIf(err error) {
 	if err != nil {
 		log.Println(err)
 	}
+}
+
+// CreateEnvError creates an error indicating that the specified env var is not specified.
+func CreateEnvError(env string) error {
+	return fmt.Errorf("%s environment variable is not defined", env)
 }
